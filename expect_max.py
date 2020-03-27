@@ -24,7 +24,7 @@ def k_means_clustering(data, num_clust):
     ax1.set_title('K-means')
     print(len(clusters))
 file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
-no_of_clusters = 3
+no_of_clusters = 4
 k_means_clustering(file_path,no_of_clusters)
 em_clustering(file_path,no_of_clusters)
 plt.show()

@@ -114,7 +114,7 @@ def update_cluster(clusters,prob_dist,points):
 
 
 def em_clustering(data_path,no_k):
-    given_points = read_board(data_path)
+    given_points = np.array(read_board(data_path))
     plt.figure(2)
     ax = plt.subplot()
     # for i in given_points:
@@ -136,7 +136,7 @@ def em_clustering(data_path,no_k):
         em_clusters.append([random_mean,co_var_mat,weight_cluster])
     for e in em_clusters:
         print(e)
-    number_iterations = 10
+    number_iterations = 20
     # ax.axis('equal')
     # for e in em_clusters:
     #     #circle1 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='blue',fill=False)
@@ -155,15 +155,17 @@ def em_clustering(data_path,no_k):
         ####### M step ##########################
         em_clusters = update_cluster(em_clusters, prob_dist, given_points)
         final_prob_dist = prob_dist
-        # print("updated clusters",em_clusters)
+        # print("updated clusters mean")
+        # for k in em_clusters:
+        #     print(k[0])
 
 
     #     #     c = plt.Circle((e[0][0],e[0][1]),e[1],facecolor='None',fill='None',edgecolor='black')
     #
     print("final cluster",em_clusters)
-    print("final prob dist")
-    for k in final_prob_dist:
-        print(k)
+    # print("final prob dist")
+    # for k in final_prob_dist:
+    #     print(k)
     color_bar = []
     for e in em_clusters:
         f = (random.uniform(0, 1), random.uniform(0, 1), random.uniform(0, 1))
@@ -172,7 +174,7 @@ def em_clustering(data_path,no_k):
     for p in final_prob_dist:
         # print(p)
         c = p.index(max(p))
-        print(c)
+        #print(c)
         ax.plot(given_points[l][0], given_points[l][1], color=color_bar[c], marker='o', markersize=2)
         l = l + 1
         # if(c==0):
@@ -184,15 +186,14 @@ def em_clustering(data_path,no_k):
         # else:
         #     ax.plot(given_points[l][0], given_points[l][1], color='magenta', marker='o', markersize=2)
         #     l=l+1
-    # i = 0
-    # for e in em_clusters:
+    i = 0
+    for e in em_clusters:
     #     # circle2 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='green',fill=False)
     #     # ax.add_artist(circle2)
-    #     ax.plot(e[0][0], e[0][1], color=color_bar[i], marker='d', markersize=8, markeredgecolor='k', markeredgewidth=1)
-    #     i = i + 1
+         ax.plot(e[0][0], e[0][1], color=color_bar[i], marker='d', markersize=8, markeredgecolor='k', markeredgewidth=1)
+         i = i + 1
     #     # print("final circle plotted")
-    # ax.set_title('EM')
-file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
-no_of_clusters = 3
-em_clustering(file_path,no_of_clusters)
+    ax.set_title('EM')
+
+
 
