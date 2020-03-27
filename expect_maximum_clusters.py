@@ -65,6 +65,3 @@ def get_cluster(means, point):
 
     return dist_set.index(min(dist_set))
 
-
-def expectation_maximum(data, num_sets):
-    pass

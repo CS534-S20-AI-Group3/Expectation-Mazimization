@@ -13,64 +13,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1204966724">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="common_functions" value="1" />
-          <entry key="py" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Python" value="5" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="common_functions" value="28" />
-          <entry key="py" value="2297" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="2325" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-1053709827">
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="csv" value="1" />
-          <entry key="py" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="4300" />
-          <entry key="txt" value="58" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="58" />
-          <entry key="Python" value="4300" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
@@ -276,9 +218,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.trial" />
       <item itemvalue="Python.em_with_plot" />
       <item itemvalue="Python.expect_max" />
+      <item itemvalue="Python.trial" />
     </list>
     <recent_temporary>
       <list>
@@ -388,6 +330,40 @@
     <MESSAGE value="em_trial1 - under progress" />
     <MESSAGE value="working em" />
     <option name="LAST_COMMIT_MESSAGE" value="working em" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2492" y="175" key="CommitChangelistDialog2" timestamp="1585350217439">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2492" y="175" key="CommitChangelistDialog2/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350217439" />
+    <state width="1838" height="336" key="GridCell.Tab.0.bottom" timestamp="1585350149543">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1838" height="336" key="GridCell.Tab.0.bottom/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350149543" />
+    <state width="1838" height="336" key="GridCell.Tab.0.center" timestamp="1585350149543">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1838" height="336" key="GridCell.Tab.0.center/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350149543" />
+    <state width="1838" height="336" key="GridCell.Tab.0.left" timestamp="1585350149543">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1838" height="336" key="GridCell.Tab.0.left/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350149543" />
+    <state width="1838" height="336" key="GridCell.Tab.0.right" timestamp="1585350149543">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1838" height="336" key="GridCell.Tab.0.right/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350149543" />
+    <state x="2619" y="317" width="628" height="562" key="MultipleFileMergeDialog" timestamp="1585350294544">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2619" y="317" width="628" height="562" key="MultipleFileMergeDialog/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350294544" />
+    <state x="2403" y="234" key="SettingsEditor" timestamp="1585158511027">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2403" y="234" key="SettingsEditor/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585158511027" />
+    <state x="2509" y="335" key="Vcs.Push.Dialog.v2" timestamp="1585350302225">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state x="2509" y="335" key="Vcs.Push.Dialog.v2/59.24.1861.1056/1920.0.1920.1200@1920.0.1920.1200" timestamp="1585350302225" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/common_functions" />

@@ -1,10 +1,10 @@
 from common_functions import *
-from expect_maximum_clusters import *
 from em_with_plot import *
 import random
 import numpy
 import sys
 import matplotlib.pyplot as plt
+from expect_maximum_clusters import *
 
 
 def k_means_clustering(data, num_clust):
@@ -19,15 +19,15 @@ def k_means_clustering(data, num_clust):
         for p in c:
             #print(c_string[i])
             ax1.plot(p[0], p[1], color=str(c_string[i]), marker='o', markersize=2)
-            ax1.set_title('K-means')
 
         i = i+1
-
+    ax1.set_title('K-means')
     print(len(clusters))
-file_path = r"C:\Users\Ankit\Desktop\sample_EM_data.csv"
+file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
 no_of_clusters = 3
 k_means_clustering(file_path,no_of_clusters)
 em_clustering(file_path,no_of_clusters)
+plt.show()
 
 # if __name__ == "__main__":
 #     if len(sys.argv) == 3:

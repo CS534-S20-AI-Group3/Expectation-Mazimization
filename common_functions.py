@@ -10,10 +10,14 @@ def read_board(filename):
   with open(filename, 'r', encoding='utf-8-sig') as csvfile:
     csvreader = csv.reader(csvfile)
     for row in csvreader:
-      init_data.append(row)
-  for row in init_data:
-      data.append((float(row[0]), float(row[1])))
-  return data
+        temp_row =[]
+        for el in row:
+            temp_row.append(float(el))
+        init_data.append(temp_row)
+    #print(init_data)
+  #for row in init_data:
+      #data.append((float(row[0]), float(row[1])))
+  return init_data
 
 # Calculates the distance between 2 tuples
 def distance(tup1, tup2):
