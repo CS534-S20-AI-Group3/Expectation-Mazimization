@@ -166,34 +166,39 @@ def em_clustering(data_path,no_k):
     # print("final prob dist")
     # for k in final_prob_dist:
     #     print(k)
-    color_bar = []
-    for e in em_clusters:
-        f = (random.uniform(0.1, 1), random.uniform(0, 1), random.uniform(0, 1))
-        color_bar.append(f)
-    l = 0
-    for p in final_prob_dist:
-        # print(p)
-        c = p.index(max(p))
-        #print(c)
-        ax.plot(given_points[l][0], given_points[l][1], color=color_bar[c], marker='o', markersize=10,alpha = 0.4,mec =color_bar[c],mew = 0 )
-        l = l + 1
-        # if(c==0):
-        #     ax.plot(given_points[l][0], given_points[l][1], color='red', marker='o', markersize=2)
-        #     l=l+1
-        # elif (c == 1):
-        #     ax.plot(given_points[l][0], given_points[l][1], color='cyan', marker='o', markersize=2)
-        #     l=l+1
-        # else:
-        #     ax.plot(given_points[l][0], given_points[l][1], color='magenta', marker='o', markersize=2)
-        #     l=l+1
-    i = 0
-    for e in em_clusters:
-    #     # circle2 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='green',fill=False)
-    #     # ax.add_artist(circle2)
-         ax.plot(e[0][0], e[0][1], color=color_bar[i], marker='d', markersize=8, markeredgecolor='k', markeredgewidth=1)
-         i = i + 1
-    #     # print("final circle plotted")
-    ax.set_title('EM')
+    if(no_of_dim==2):
+        color_bar = []
+        for e in em_clusters:
+            f = (random.uniform(0.1, 1), random.uniform(0, 1), random.uniform(0, 1))
+            color_bar.append(f)
+        l = 0
+        for p in final_prob_dist:
+            # print(p)
+            c = p.index(max(p))
+            # print(c)
+            ax.plot(given_points[l][0], given_points[l][1], color=color_bar[c], marker='o', markersize=10, alpha=0.4,
+                    mec=color_bar[c], mew=0)
+            l = l + 1
+            # if(c==0):
+            #     ax.plot(given_points[l][0], given_points[l][1], color='red', marker='o', markersize=2)
+            #     l=l+1
+            # elif (c == 1):
+            #     ax.plot(given_points[l][0], given_points[l][1], color='cyan', marker='o', markersize=2)
+            #     l=l+1
+            # else:
+            #     ax.plot(given_points[l][0], given_points[l][1], color='magenta', marker='o', markersize=2)
+            #     l=l+1
+        i = 0
+        for e in em_clusters:
+            #     # circle2 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='green',fill=False)
+            #     # ax.add_artist(circle2)
+            ax.plot(e[0][0], e[0][1], color=color_bar[i], marker='d', markersize=8, markeredgecolor='k',
+                    markeredgewidth=1)
+            i = i + 1
+        #     # print("final circle plotted")
+        ax.set_title('EM')
+
+
 
 
 

@@ -16,13 +16,16 @@ def k_means_clustering(data, num_clust):
     plt.figure(1)
     ax1 = plt.subplot()
     i = 0
-    for c in clusters:
-        for p in c:
-            #print(c_string[i])
-            ax1.plot(p[0], p[1], color=str(c_string[i]), marker='o', markersize=15,alpha = 0.4,mec =str(c_string[i]),mew = 0 )
+    if(len(data_set[0])==2):
+        for c in clusters:
+            for p in c:
+                # print(c_string[i])
+                ax1.plot(p[0], p[1], color=str(c_string[i]), marker='o', markersize=15, alpha=0.4, mec=str(c_string[i]),
+                         mew=0)
+            i = i + 1
+        ax1.set_title('K-means')
 
-        i = i+1
-    ax1.set_title('K-means')
+
     print(len(clusters))
 
 file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
