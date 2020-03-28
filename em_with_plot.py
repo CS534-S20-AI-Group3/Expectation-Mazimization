@@ -6,28 +6,30 @@ import math
 import copy
 import numpy as np
 
-def cal_prob(point,clusters):# this func cal the prob distribution -takes a point and cal the prob of beingh in each cluster returns a mat with prob vals of each cluster
-    #print("E step")
-    #print("Calculating prob for point",point)
+# this func calcs the prob distribution
+# -takes a point and calcs the prob of being in each cluster returns a mat with prob vals of each cluster
+def cal_prob(point,clusters):
+    # print("E step")
+    # print("Calculating prob for point",point)
     p_point_cluster = []
     dim = len(point)
-    #print("dimension",dim)
+    # print("dimension",dim)
     for x in clusters:
         cluster_mean = x[0]
         cluster_varience = x[1]
-        #print("cluster mean and var",cluster_mean,cluster_varience)
+        # print("cluster mean and var",cluster_mean,cluster_varience)
         # cluster_prob_a = 1/pow((2*math.pi), -dim/2) * pow(abs(np.linalg.det(cluster_varience)), -1/2)
         # cluster_prob_b = np.exp(-1/2 * (np.dot((np.subtract(point,cluster_mean)).T, np.linalg.inv(cluster_varience)), np.subtract(point,cluster_mean)))
         diff_mat = np.array(np.subtract(point, cluster_mean))[np.newaxis]
-        #print("diff mat shape",diff_mat.shape)
+        # print("diff mat shape",diff_mat.shape)
         second_mat = np.array(np.linalg.inv(cluster_varience))
-        #print("second mat shape", second_mat.shape)
+        # print("second mat shape", second_mat.shape)
         diff_mat_trans = np.transpose(diff_mat)
-        #print("third mat shape", diff_mat_trans.shape)
+        # print("third mat shape", diff_mat_trans.shape)
         probability_1 = 1 / (pow((2 * math.pi), dim *0.5) * pow(abs(np.linalg.det(cluster_varience)), 0.5))
         probability_2 = np.exp(float(-0.5 * diff_mat.dot(second_mat).dot(diff_mat_trans)))
         probability = probability_1*probability_2
-        #print("prob",probability)
+        # print("prob",probability)
         # print("distance",distance(point,(cluster_mean_x,cluster_mean_y)))
         # print("cluster prob a", cluster_prob_a)
         # print("cluster prob b", cluster_prob_b)
@@ -63,7 +65,8 @@ def cal_prob(point,clusters):# this func cal the prob distribution -takes a poin
     # # print("sum of prob",sum(p_cluster))
     # return p_cluster
 
-def update_cluster(clusters,prob_dist,points):#updates the mean,var and weights and sends it as a new cluster
+# updates the mean,var and weights and sends it as a new cluster
+def update_cluster(clusters,prob_dist,points):
     #print("M step")
     prob = np.array(prob_dist)
     copy_points = np.array(copy.deepcopy(points))

@@ -23,6 +23,7 @@ def init_k_means(data, num_sets):
 def k_means(data, clusters):
     prev_clusters = [point[:] for point in clusters]
     curr_clusters = []
+    prev_means = []
     notSame = True
 
     while notSame:
@@ -32,12 +33,12 @@ def k_means(data, clusters):
             curr_clusters.append([])
             means_list.append(find_mean(clust))
         curr_clusters = create_clusters(data, means_list, curr_clusters)
-        if prev_clusters == curr_clusters:
+        if prev_means == means_list:
             notSame = False
         else:
-            prev_clusters = [point[:] for point in curr_clusters]
+            prev_means = [point[:] for point in means_list]
 
-    return curr_clusters
+    return (curr_clusters, means_list)
 
 # Returns the mean of a cluster
 def find_mean(cluster):
