@@ -6,7 +6,7 @@ import math
 import copy
 import numpy as np
 
-def cal_prob(point,clusters):
+def cal_prob(point,clusters):# this func cal the prob distribution -takes a point and cal the prob of beingh in each cluster returns a mat with prob vals of each cluster
     #print("E step")
     #print("Calculating prob for point",point)
     p_point_cluster = []
@@ -24,7 +24,7 @@ def cal_prob(point,clusters):
         #print("second mat shape", second_mat.shape)
         diff_mat_trans = np.transpose(diff_mat)
         #print("third mat shape", diff_mat_trans.shape)
-        probability_1 = 1 / (pow((2 * math.pi), dim / 2) * pow(abs(np.linalg.det(cluster_varience)), 1 / 2))
+        probability_1 = 1 / (pow((2 * math.pi), dim *0.5) * pow(abs(np.linalg.det(cluster_varience)), 0.5))
         probability_2 = np.exp(float(-0.5 * diff_mat.dot(second_mat).dot(diff_mat_trans)))
         probability = probability_1*probability_2
         #print("prob",probability)
@@ -63,7 +63,7 @@ def cal_prob(point,clusters):
     # # print("sum of prob",sum(p_cluster))
     # return p_cluster
 
-def update_cluster(clusters,prob_dist,points):
+def update_cluster(clusters,prob_dist,points):#updates the mean,var and weights and sends it as a new cluster
     #print("M step")
     prob = np.array(prob_dist)
     copy_points = np.array(copy.deepcopy(points))
@@ -125,9 +125,9 @@ def em_clustering(data_path,no_k):
     print("Number of Dimensions",no_of_dim)
     no_points = len(given_points)
     print("NUmber of points",no_points)
-    em_clusters = []
-    final_prob_dist =[]
-    co_var_mat = np.identity(no_of_dim)
+    em_clusters = []#this mat will hold[mean_mat,covar_mat,weight] for each cluster
+    final_prob_dist =[]#this holds the prob of ech point belonging to each cluster [[p1,p2...pk],[p1,p2,....pk]........all points ]
+    co_var_mat = np.identity(no_of_dim)#initial covar matrix
     #co_var_mat = [[1,0],[0,1]]
     #print("co var mat test",co_var_mat)
     weight_cluster = 1/number_of_clusters
@@ -136,7 +136,7 @@ def em_clustering(data_path,no_k):
         em_clusters.append([random_mean,co_var_mat,weight_cluster])
     for e in em_clusters:
         print(e)
-    number_iterations = 20
+    number_iterations = 25
     # ax.axis('equal')
     # for e in em_clusters:
     #     #circle1 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='blue',fill=False)
@@ -168,14 +168,14 @@ def em_clustering(data_path,no_k):
     #     print(k)
     color_bar = []
     for e in em_clusters:
-        f = (random.uniform(0, 1), random.uniform(0, 1), random.uniform(0, 1))
+        f = (random.uniform(0.1, 1), random.uniform(0, 1), random.uniform(0, 1))
         color_bar.append(f)
     l = 0
     for p in final_prob_dist:
         # print(p)
         c = p.index(max(p))
         #print(c)
-        ax.plot(given_points[l][0], given_points[l][1], color=color_bar[c], marker='o', markersize=2)
+        ax.plot(given_points[l][0], given_points[l][1], color=color_bar[c], marker='o', markersize=10,alpha = 0.4,mec =color_bar[c],mew = 0 )
         l = l + 1
         # if(c==0):
         #     ax.plot(given_points[l][0], given_points[l][1], color='red', marker='o', markersize=2)

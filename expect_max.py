@@ -3,8 +3,9 @@ from em_with_plot import *
 import random
 import numpy
 import sys
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from expect_maximum_clusters import *
+from matplotlib import animation
 
 
 def k_means_clustering(data, num_clust):
@@ -18,13 +19,14 @@ def k_means_clustering(data, num_clust):
     for c in clusters:
         for p in c:
             #print(c_string[i])
-            ax1.plot(p[0], p[1], color=str(c_string[i]), marker='o', markersize=2)
+            ax1.plot(p[0], p[1], color=str(c_string[i]), marker='o', markersize=15,alpha = 0.4,mec =str(c_string[i]),mew = 0 )
 
         i = i+1
     ax1.set_title('K-means')
     print(len(clusters))
+
 file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
-no_of_clusters = 4
+no_of_clusters = 3
 k_means_clustering(file_path,no_of_clusters)
 em_clustering(file_path,no_of_clusters)
 plt.show()
