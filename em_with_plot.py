@@ -51,9 +51,9 @@ def cal_prob(point,clusters):
 
     # print("likelyhood",b_k)
     # print("sum of likelyhood",sum(b_k))
-    # if(sum(b_k)<0.9999 or sum(b_k)>1):
-    #     print("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooooooooooooooooooooooooooooooooooooorrrrrrrr",sum(b_k))
-    return b_k
+    if(sum(b_k)<0.99999 or sum(b_k)>1.1):
+        print("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooooooooooooooooooooooooooooooooooooorrrrrrrr",sum(b_k))
+    return [b_k,np.log(b_k_sum)]
 
     #print("prob without nomalization",p_point_cluster)
     # sum_cluster = sum(p_point_cluster)
@@ -116,9 +116,10 @@ def update_cluster(clusters,prob_dist,points):
     return new_clusters
 
 
-def em_clustering(data_path,no_k):
+
+def em_clustering(data_path,no_k,means_k):
     given_points = np.array(read_board(data_path))
-    plt.figure(2)
+    plt.figure(1)
     ax = plt.subplot()
     # for i in given_points:
     #     ax.plot(i[0],i[1],color='red', marker='o', markersize=2)
@@ -130,16 +131,20 @@ def em_clustering(data_path,no_k):
     print("NUmber of points",no_points)
     em_clusters = []#this mat will hold[mean_mat,covar_mat,weight] for each cluster
     final_prob_dist =[]#this holds the prob of ech point belonging to each cluster [[p1,p2...pk],[p1,p2,....pk]........all points ]
+    best_ll = 0
     co_var_mat = np.identity(no_of_dim)#initial covar matrix
     #co_var_mat = [[1,0],[0,1]]
     #print("co var mat test",co_var_mat)
     weight_cluster = 1/number_of_clusters
     for i in range(0, number_of_clusters):
         random_mean = given_points[random.randint(0, no_points - 1)]
-        em_clusters.append([random_mean,co_var_mat,weight_cluster])
+        em_clusters.append([random_mean, co_var_mat, weight_cluster])
+        #em_clusters.append([means_k[i],co_var_mat,weight_cluster])
+    print("Initial cluster mean , covar , weight")
     for e in em_clusters:
         print(e)
-    number_iterations = 25
+    print("running EM")
+    number_iterations = 100
     # ax.axis('equal')
     # for e in em_clusters:
     #     #circle1 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='blue',fill=False)
@@ -150,12 +155,17 @@ def em_clustering(data_path,no_k):
     ####### E step ##########################
     for i in range(0, number_iterations):
         prob_dist = []
+        temp_ll = 0
         # print("initial em cluster",em_clusters)
         for p in given_points:
-            prob_dist.append(cal_prob(p, em_clusters))
+            temp = cal_prob(p, em_clusters)
+            prob_dist.append(temp[0])
+            temp_ll = temp_ll + temp[1]
         # for p in prob_dist:
         #     print(p)
         ####### M step ##########################
+        best_ll = temp_ll
+        print("Log Likelyhood iteration",i,best_ll)
         em_clusters = update_cluster(em_clusters, prob_dist, given_points)
         final_prob_dist = prob_dist
         # print("updated clusters mean")
@@ -199,7 +209,7 @@ def em_clustering(data_path,no_k):
                     markeredgewidth=1)
             i = i + 1
         #     # print("final circle plotted")
-        ax.set_title('EM')
+        ax.set_title('EM , LL '+str(best_ll))
 
 
 

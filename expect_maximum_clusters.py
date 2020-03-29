@@ -48,7 +48,7 @@ def find_mean(cluster):
         x_vals.append(point[0])
         y_vals.append(point[1])
 
-    mean_point = (sum(x_vals)/len(x_vals), sum(y_vals)/len(y_vals))
+    mean_point = [sum(x_vals)/len(x_vals), sum(y_vals)/len(y_vals)]
     return mean_point
 
 # Separates the data into the clusters given the centers
