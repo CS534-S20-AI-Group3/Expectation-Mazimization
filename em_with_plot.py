@@ -51,8 +51,7 @@ def cal_prob(point,clusters):
 
     # print("likelyhood",b_k)
     # print("sum of likelyhood",sum(b_k))
-    if(sum(b_k)<0.99999 or sum(b_k)>1.1):
-        print("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooooooooooooooooooooooooooooooooooooorrrrrrrr",sum(b_k))
+
     return [b_k,np.log(b_k_sum)]
 
     #print("prob without nomalization",p_point_cluster)
@@ -119,10 +118,6 @@ def update_cluster(clusters,prob_dist,points):
 
 def em_clustering(given_points,no_k,bic_bool):
 
-    plt.figure(1)
-    ax = plt.subplot()
-    # for i in given_points:
-    #     ax.plot(i[0],i[1],color='red', marker='o', markersize=2)
     number_of_clusters = no_k
     no_of_dim = len(given_points[0])
     no_points = len(given_points)
@@ -137,7 +132,7 @@ def em_clustering(given_points,no_k,bic_bool):
     if(bic_bool==True):
         ll_threshold = 2
     else:
-        ll_threshold = 1
+        ll_threshold = .5
     #co_var_mat = [[1,0],[0,1]]
     #print("co var mat test",co_var_mat)
     weight_cluster = 1/number_of_clusters
@@ -150,15 +145,9 @@ def em_clustering(given_points,no_k,bic_bool):
     #     print(e)
     # print("running EM")
     run  = True
-    iteration = 0
+    #iteration = 0
     #number_iterations = 100
-    # ax.axis('equal')
-    # for e in em_clusters:
-    #     #circle1 = plt.Circle((e[0][0], e[0][1]),radius=e[1],color='blue',fill=False)
-    #     #ax.add_artist(circle1)
-    #     ax.plot(e[0][0], e[0][1], color='blue', marker='s', markersize=7)
-    #
-    #     #plt.scatter(e[0][0],e[0][1],c = 'b',marker='d',data=[e[0][0],e[0][1]])
+
     ####### E step ##########################
     while(run):
         prob_dist = []
@@ -180,7 +169,7 @@ def em_clustering(given_points,no_k,bic_bool):
         if (diff_t < ll_threshold and diff_t != float('-inf') and diff_t!=float('inf')):
             run = False
         best_ll = temp_ll
-        iteration = iteration+1
+        #iteration = iteration+1
         # print("updated clusters mean")
         # for k in em_clusters:
         #     print(k[0])
@@ -189,17 +178,6 @@ def em_clustering(given_points,no_k,bic_bool):
         clus = p.index(max(p))
         (clusters[clus]).append(given_points[point])
         point = point+1
-
-
-    #     #     c = plt.Circle((e[0][0],e[0][1]),e[1],facecolor='None',fill='None',edgecolor='black')
-    #
-    # print("final cluster",em_clusters)
-    # print("clusters")
-    # for l in clusters:
-    #     print(l)
-    # print("final prob dist")
-    # for k in final_prob_dist:
-    #     print(k)
 
 
     return ([best_ll,clusters,em_clusters])
