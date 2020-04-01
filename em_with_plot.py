@@ -1,11 +1,24 @@
-from common_functions import *
-import matplotlib.pyplot as plt
-from expect_maximum_clusters import *
+import csv
 import random
 import math
 import copy
 import numpy as np
 
+def read_board(filename):
+  init_data = []
+  data = []
+  # Read the CSV file
+  with open(filename, 'r', encoding='utf-8-sig') as csvfile:
+    csvreader = csv.reader(csvfile)
+    for row in csvreader:
+        temp_row =[]
+        for el in row:
+            temp_row.append(float(el))
+        init_data.append(temp_row)
+    #print(init_data)
+  #for row in init_data:
+      #data.append((float(row[0]), float(row[1])))
+  return init_data
 # this func calcs the prob distribution
 # -takes a point and calcs the prob of being in each cluster returns a mat with prob vals of each cluster
 def cal_prob(point,clusters):
@@ -115,9 +128,9 @@ def update_cluster(clusters,prob_dist,points):
     return new_clusters
 
 
-
-def em_clustering(given_points,no_k,bic_bool):
-
+def em_clustering_kmean(given_points,no_k,bic_bool,means_k):# use this if you are using k-means to initialize
+#def em_clustering(given_points,no_k,bic_bool):#comment this if you are using k-means to initialize
+    print("running EM K-mean init")
     number_of_clusters = no_k
     no_of_dim = len(given_points[0])
     no_points = len(given_points)
@@ -130,16 +143,16 @@ def em_clustering(given_points,no_k,bic_bool):
 
     co_var_mat = np.identity(no_of_dim)#initial covar matrix
     if(bic_bool==True):
-        ll_threshold = 2
+        ll_threshold = 5
     else:
-        ll_threshold = .5
+        ll_threshold = 2.5
     #co_var_mat = [[1,0],[0,1]]
     #print("co var mat test",co_var_mat)
     weight_cluster = 1/number_of_clusters
     for i in range(0, number_of_clusters):
-        random_mean = given_points[random.randint(0, no_points - 1)]
-        em_clusters.append([random_mean, co_var_mat, weight_cluster])
-        #em_clusters.append([means_k[i],co_var_mat,weight_cluster])
+        # random_mean = given_points[random.randint(0, no_points - 1)] #comment this if you are using k-means to initialize
+        # em_clusters.append([random_mean, co_var_mat, weight_cluster]) #comment this if you are using k-means to initialize
+        em_clusters.append([means_k[i],co_var_mat,weight_cluster]) #uncomment if you are using k-means to initialize
     # print("Initial cluster mean , covar , weight")
     # for e in em_clusters:
     #     print(e)
@@ -181,6 +194,74 @@ def em_clustering(given_points,no_k,bic_bool):
 
 
     return ([best_ll,clusters,em_clusters])
+
+
+def em_clustering(given_points,no_k,bic_bool):#comment this if you are using k-means to initialize
+    print("running EM random init")
+    number_of_clusters = no_k
+    no_of_dim = len(given_points[0])
+    no_points = len(given_points)
+    em_clusters = []#this mat will hold[mean_mat,covar_mat,weight] for each cluster
+    final_prob_dist =[]#this holds the prob of ech point belonging to each cluster [[p1,p2...pk],[p1,p2,....pk]........all points ]
+    best_ll = 0
+    clusters = []
+    for k in range(number_of_clusters):
+        clusters.append([])
+
+    co_var_mat = np.identity(no_of_dim)#initial covar matrix
+    if(bic_bool==True):
+        ll_threshold = 5
+    else:
+        ll_threshold = 2.5
+    #co_var_mat = [[1,0],[0,1]]
+    #print("co var mat test",co_var_mat)
+    weight_cluster = 1/number_of_clusters
+    for i in range(0, number_of_clusters):
+        random_mean = given_points[random.randint(0, no_points - 1)] #comment this if you are using k-means to initialize
+        em_clusters.append([random_mean, co_var_mat, weight_cluster]) #comment this if you are using k-means to initialize
+        #em_clusters.append([means_k[i],co_var_mat,weight_cluster]) #uncomment if you are using k-means to initialize
+    # print("Initial cluster mean , covar , weight")
+    # for e in em_clusters:
+    #     print(e)
+    # print("running EM")
+    run  = True
+    #iteration = 0
+    #number_iterations = 100
+
+    ####### E step ##########################
+    while(run):
+        prob_dist = []
+        temp_ll = 0
+        # print("initial em cluster",em_clusters)
+        for p in given_points:
+            temp = cal_prob(p, em_clusters)
+            prob_dist.append(temp[0])
+            temp_ll = temp_ll + temp[1]
+        # for p in prob_dist:
+        #     print(p)
+        ####### M step ##########################
+
+        #print("Log Likelyhood iteration",iteration,temp_ll)
+        em_clusters = update_cluster(em_clusters, prob_dist, given_points)
+        final_prob_dist = prob_dist
+        diff_t = abs(temp_ll - best_ll)
+        #print("diff", diff_t)
+        if (diff_t < ll_threshold and diff_t != float('-inf') and diff_t!=float('inf')):
+            run = False
+        best_ll = temp_ll
+        #iteration = iteration+1
+        # print("updated clusters mean")
+        # for k in em_clusters:
+        #     print(k[0])
+    point = 0
+    for p in final_prob_dist:
+        clus = p.index(max(p))
+        (clusters[clus]).append(given_points[point])
+        point = point+1
+
+
+    return ([best_ll,clusters,em_clusters])
+
 
 
 
