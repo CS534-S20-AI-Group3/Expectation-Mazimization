@@ -212,7 +212,7 @@ def em_clustering(given_points,no_k,bic_bool):#comment this if you are using k-m
     if(bic_bool==True):
         ll_threshold = 5
     else:
-        ll_threshold = 3.5
+        ll_threshold = 2.5
     #co_var_mat = [[1,0],[0,1]]
     #print("co var mat test",co_var_mat)
     weight_cluster = 1/number_of_clusters

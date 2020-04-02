@@ -6,8 +6,8 @@ from matplotlib import pyplot as plt
 from expect_maximum_clusters import *
 import time
 
-def em_restart(file_path,no_k,means_k):
-    given_points = np.array(read_board(file_path))
+def em_restart(given_points,no_k):
+
     start_time = time.perf_counter()
     no_of_clusters = int(no_k)
     # means_k = k_means_clustering(file_path,no_of_clusters)
@@ -17,6 +17,7 @@ def em_restart(file_path,no_k,means_k):
     sol_clusters = []
     sol_em = []
     lowest_bic = 0
+    best_k = 0
     restart = True
     if(no_of_clusters==0):
         bic_bool=True
@@ -29,6 +30,7 @@ def em_restart(file_path,no_k,means_k):
     print("NUmber of points", len(given_points))
     if(no_of_clusters!=0):
         print("Running EM with restart")
+        means_k = k_means_clustering(given_points,no_of_clusters)
         sol = em_clustering_kmean(given_points, no_of_clusters, bic_bool, means_k)
         sol_ll = sol[0]
         sol_clusters = sol[1]
@@ -48,7 +50,7 @@ def em_restart(file_path,no_k,means_k):
                 sol_ll = sol[0]
                 sol_clusters = sol[1]
                 sol_em = sol[2]
-            end_time = time.perf_counter()
+
 
 
     else:
@@ -56,26 +58,48 @@ def em_restart(file_path,no_k,means_k):
         start_k = 1
         run = True
         while(run):
-            end_time = time.perf_counter()
-            if (end_time - start_time > 9):
+            end_time1 = time.perf_counter()
+            if (end_time1 - start_time > 9 or start_k == 20):
                 run = False
+                print("best k found", best_k)
                 print("best ll ", sol_ll)
                 #print("clusters", sol_clusters)
                 print("EM mean , covar , weight", sol_em)
-                print("end time", end_time - start_time)
+                print("end time", end_time1 - start_time)
                 break
-
-            sol = em_clustering_kmean(given_points, start_k,bic_bool,means_k)
-            sol = em_clustering(given_points, start_k, bic_bool)
+            means_k = k_means_clustering(given_points,start_k)
+            sol = em_clustering_kmean(given_points, start_k, bic_bool, means_k)
+            #sol = em_clustering(given_points, start_k, bic_bool)
             #print("ll", sol[0], sol[1], sol[2])
-            bic = start_k*np.log(len(given_points))-2*sol[0]
+            bic = (start_k)*(np.log(len(given_points)))-(2*sol[0])
             print("BIC for k ",start_k,bic)
             if(lowest_bic==0 or bic <lowest_bic):
+                best_k = start_k
                 sol_ll = sol[0]
                 sol_clusters = sol[1]
                 sol_em = sol[2]
                 lowest_bic = bic
             start_k = start_k+1
+        end_time2 = time.perf_counter()
+        if(end_time2 - start_time <9.2):
+            while (restart):
+                end_time3 = time.perf_counter()
+                if (end_time3 - start_time > 9.8):
+                    restart = False
+                    print("best k found",best_k)
+                    print("best ll ", sol_ll)
+                    print("clusters", sol_clusters)
+                    print("EM mean , covar , weight", sol_em)
+                    print("end time", end_time3 - start_time)
+                    break
+                sol = em_clustering(given_points, best_k,False)
+                # print("ll",sol[0],sol[1],sol[2])
+                if (sol[0] > sol_ll or sol_ll == 0):
+                    sol_ll = sol[0]
+                    sol_clusters = sol[1]
+                    sol_em = sol[2]
+
+
     if (len(given_points[0]) != 1):
         plt.figure(1)
         ax = plt.subplot()
@@ -130,5 +154,6 @@ def em_restart(file_path,no_k,means_k):
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:
-        h = k_means_clustering(sys.argv[1], sys.argv[2])
-        em_restart(sys.argv[1], sys.argv[2], h)
+        given_points = np.array(read_board(sys.argv[1]))
+        em_restart(given_points, sys.argv[2])
+
