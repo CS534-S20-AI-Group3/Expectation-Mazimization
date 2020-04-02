@@ -9,7 +9,7 @@ import time
 def em_restart(given_points,no_k):
 
     start_time = time.perf_counter()
-    no_of_clusters = no_k
+    no_of_clusters = int(no_k)
     # means_k = k_means_clustering(file_path,no_of_clusters)
     # print(" Passing means from K means to EM ")
     # for i in range(2,12):
@@ -40,7 +40,7 @@ def em_restart(given_points,no_k):
             if (end_time - start_time > 9):
                 restart = False
                 print("best ll ", sol_ll)
-                print("clusters", sol_clusters)
+                # print("clusters", sol_clusters)
                 print("EM mean , covar , weight", sol_em)
                 print("end time", end_time - start_time)
                 break
@@ -151,12 +151,8 @@ def em_restart(given_points,no_k):
         ax.set_title('EM , LL ' + str(sol_ll))
         plt.show()
 
+if __name__ == "__main__":
+    if len(sys.argv) == 3:
+        given_points = np.array(read_board(sys.argv[1]))
+        em_restart(given_points, sys.argv[2])
 
-file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
-given_points = np.array(read_board(file_path))
-em_restart(given_points,9)
-# if __name__ == "__main__":
-#     if len(sys.argv) == 3:
-#         file_path = r"sys.argv[1]"
-#         given_points = np.array(read_board(file_path))
-#         em_restart(given_points, sys.argv[2])
