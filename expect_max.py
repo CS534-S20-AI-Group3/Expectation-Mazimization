@@ -38,7 +38,7 @@ def em_restart(file_path,no_k,means_k):
             if (end_time - start_time > 9):
                 restart = False
                 print("best ll ", sol_ll)
-                print("clusters", sol_clusters)
+                # print("clusters", sol_clusters)
                 print("EM mean , covar , weight", sol_em)
                 print("end time", end_time - start_time)
                 break
