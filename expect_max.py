@@ -101,7 +101,7 @@ def em_restart(given_points,no_k):
 
 
     if (len(given_points[0]) != 1):
-        plt.figure(1)
+        plt.figure(2)
         ax = plt.subplot()
         color_bar = []
         for e in range(len(sol_em)):
@@ -126,7 +126,7 @@ def em_restart(given_points,no_k):
         ax.set_title('EM , LL ' + str(sol_ll))
         plt.show()
     if (len(given_points[0]) == 1):
-        plt.figure(1)
+        plt.figure(2)
         ax = plt.subplot()
         color_bar = []
         for e in range(len(sol_em)):
@@ -150,7 +150,6 @@ def em_restart(given_points,no_k):
         #     # print("final circle plotted")
         ax.set_title('EM , LL ' + str(sol_ll))
         plt.show()
-
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:

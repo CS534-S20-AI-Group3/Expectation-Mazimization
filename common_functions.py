@@ -21,7 +21,11 @@ def read_board(filename):
 
 # Calculates the distance between 2 tuples
 def distance(tup1, tup2):
-    xdiff = abs(tup1[0]-tup2[0])
-    ydiff = abs(tup1[1]-tup2[1])
-    dist = math.sqrt((xdiff**2)+(ydiff**2))
+    # xdiff = abs(tup1[0]-tup2[0])
+    # ydiff = abs(tup1[1]-tup2[1])
+    diff = 0
+    for i in range(0,len(tup1)):
+        diff = diff + (abs(tup1[i]-tup2[i])**2)
+
+    dist = math.sqrt(diff)
     return dist
