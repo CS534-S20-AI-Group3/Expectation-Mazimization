@@ -1,9 +1,10 @@
 import csv
 import math
-import numpy
+import numpy as np
 import random
 from common_functions import *
 import time
+from matplotlib import pyplot as plt
 
 # initial k_means function that finds clusters based on initial estimates
 # initial estimates are chosen from existing points
@@ -34,7 +35,9 @@ def k_means(data, clusters):
             curr_clusters.append([])
             means_list.append(find_mean(clust))
         curr_clusters = create_clusters(data, means_list, curr_clusters)
-        if prev_means == means_list:
+        print("prev means",prev_means)
+        print("means lis",means_list)
+        if np.array_equal(prev_means,means_list):
             notSame = False
         else:
             prev_means = [point[:] for point in means_list]
@@ -43,13 +46,14 @@ def k_means(data, clusters):
 
 # Returns the mean of a cluster
 def find_mean(cluster):
-    x_vals = []
-    y_vals = []
+    vals = np.array(cluster[0])
     for point in cluster:
-        x_vals.append(point[0])
-        y_vals.append(point[1])
+        vals = vals + np.array(point)
+        # x_vals.append(point[0])
+        # y_vals.append(point[1])
 
-    mean_point = [sum(x_vals)/len(x_vals), sum(y_vals)/len(y_vals)]
+    #mean_point = [sum(x_vals)/len(x_vals), sum(y_vals)/len(y_vals)]
+    mean_point = vals/float(len(cluster))
     return mean_point
 
 # Separates the data into the clusters given the centers
@@ -83,27 +87,27 @@ def k_means_clustering(data_set, num_clust):
     end_ktime = time.perf_counter()
     diff_ktime = end_ktime - start_ktime
     print("time taken to do k means",diff_ktime)
-    # plotting the k means if dimension is 2
-    # if(len(data_set[0])==2):
-    #     color_bar = []
-    #     for e in range(len(means)):
-    #         f = (random.uniform(0.1, 1), random.uniform(0, 1), random.uniform(0, 1))
-    #         color_bar.append(f)
-    #     plt.figure(1)
-    #     ax1 = plt.subplot(211)
-    #     i = 0
-    #     for c in clusters:
-    #         for p in c:
+    #plotting the k means if dimension is 2
+
+    # color_bar = []
+    # for e in range(len(means)):
+    #     f = (random.uniform(0.1, 1), random.uniform(0, 1), random.uniform(0, 1))
+    #     color_bar.append(f)
+    # plt.figure(1)
+    # ax1 = plt.subplot()
+    # i = 0
+    # for c in clusters:
+    #     for p in c:
     #             # print(c_string[i])
+    #         if(len(p)==1):
+    #             ax1.plot(p[0], p[0], color=color_bar[i], marker='o', markersize=15, alpha=0.4, mec=color_bar[i],
+    #                      mew=0)
+    #         else:
     #             ax1.plot(p[0], p[1], color = color_bar[i], marker='o', markersize=15, alpha=0.4, mec=color_bar[i],
     #                      mew=0)
-    #         i = i + 1
-    #     i = 0
-    #     for m in means:
-    #         ax1.plot(m[0],m[1], color=color_bar[i], marker='d', markersize=8, markeredgecolor='k',
-    #                 markeredgewidth=1)
-    #         i=i+1
-    #     ax1.set_title('K-means')
+    #     i = i + 1
+    #
+    # ax1.set_title('K-means')
 
     return means
 

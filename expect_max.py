@@ -101,7 +101,7 @@ def em_restart(given_points,no_k):
 
 
     if (len(given_points[0]) != 1):
-        plt.figure(1)
+        plt.figure(2)
         ax = plt.subplot()
         color_bar = []
         for e in range(len(sol_em)):
@@ -126,7 +126,7 @@ def em_restart(given_points,no_k):
         ax.set_title('EM , LL ' + str(sol_ll))
         plt.show()
     if (len(given_points[0]) == 1):
-        plt.figure(1)
+        plt.figure(2)
         ax = plt.subplot()
         color_bar = []
         for e in range(len(sol_em)):
@@ -152,10 +152,9 @@ def em_restart(given_points,no_k):
         plt.show()
 
 
-
 file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
 given_points = np.array(read_board(file_path))
-em_restart(given_points,0)
+em_restart(given_points,3)
 # if __name__ == "__main__":
 #     if len(sys.argv) == 3:
 #         file_path = r"sys.argv[1]"
