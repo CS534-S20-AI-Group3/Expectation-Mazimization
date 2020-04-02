@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94dd560b-6f13-4017-801d-a0dee88baabc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/em_with_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/em_with_plot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/expect_max.py" beforeDir="false" afterPath="$PROJECT_DIR$/expect_max.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expect_maximum_clusters.py" beforeDir="false" afterPath="$PROJECT_DIR$/expect_maximum_clusters.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,12 +16,12 @@
     <session id="-1204966724">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="689" />
+          <entry key="py" value="701" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="689" />
+          <entry key="Python" value="701" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -50,20 +50,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/expect_max.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="97" column="18" lean-forward="true" selection-start-line="97" selection-start-column="18" selection-end-line="97" selection-end-column="18" />
+            <state relative-caret-position="339">
+              <caret line="133" column="47" selection-start-line="133" selection-start-column="47" selection-end-line="133" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="78" selection-start-line="10" selection-start-column="78" selection-end-line="10" selection-end-column="78" />
+            <state relative-caret-position="210">
+              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <marker date="1585782607026" expanded="true" signature="67:68" ph="..." />
@@ -84,8 +87,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/em_with_plot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="30" lean-forward="true" selection-start-column="30" selection-end-column="30" />
+            <state relative-caret-position="265">
+              <caret line="262" column="43" lean-forward="true" selection-start-line="262" selection-start-column="43" selection-end-line="262" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/expect_maximum_clusters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+            <state relative-caret-position="198">
+              <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -141,9 +147,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/expect_maximum_clusters.py" />
-        <option value="$PROJECT_DIR$/expect_max.py" />
-        <option value="$PROJECT_DIR$/em_with_plot.py" />
         <option value="$PROJECT_DIR$/data_generator.py" />
+        <option value="$PROJECT_DIR$/em_with_plot.py" />
+        <option value="$PROJECT_DIR$/expect_max.py" />
       </list>
     </option>
   </component>
@@ -448,13 +454,6 @@
     <entry file="file://$PROJECT_DIR$/sample_EM_data.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/em_with_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" lean-forward="true" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -466,18 +465,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/expect_maximum_clusters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+        <state relative-caret-position="198">
+          <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/expect_max.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="97" column="18" lean-forward="true" selection-start-line="97" selection-start-column="18" selection-end-line="97" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -490,11 +482,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="78" selection-start-line="10" selection-start-column="78" selection-end-line="10" selection-end-column="78" />
+        <state relative-caret-position="210">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <marker date="1585782607026" expanded="true" signature="67:68" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/em_with_plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="262" column="43" lean-forward="true" selection-start-line="262" selection-start-column="43" selection-end-line="262" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/expect_max.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="133" column="47" selection-start-line="133" selection-start-column="47" selection-end-line="133" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
