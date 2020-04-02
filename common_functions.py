@@ -24,6 +24,8 @@ def distance(tup1, tup2):
     # xdiff = abs(tup1[0]-tup2[0])
     # ydiff = abs(tup1[1]-tup2[1])
     diff = 0
+    # print("tup 1",tup1)
+    # print("tup 2", tup2)
     for i in range(0,len(tup1)):
         diff = diff + (abs(tup1[i]-tup2[i])**2)
 

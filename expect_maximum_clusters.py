@@ -14,7 +14,7 @@ def init_k_means(data, num_sets):
 
     for x in range(0, num_sets):
         clusters.append([])
-        randMean = random.randint(0, len(data))
+        randMean = random.randint(0, len(data)-1)
         means.append(data[randMean])
 
     clusters = create_clusters(data, means, clusters)
@@ -33,10 +33,10 @@ def k_means(data, clusters):
         means_list = []
         for clust in prev_clusters:
             curr_clusters.append([])
-            means_list.append(find_mean(clust))
+            means_list.append(find_mean(clust,len(data[0])))
         curr_clusters = create_clusters(data, means_list, curr_clusters)
-        print("prev means",prev_means)
-        print("means lis",means_list)
+        # print("prev means",prev_means)
+        # print("means lis",means_list)
         if np.array_equal(prev_means,means_list):
             notSame = False
         else:
@@ -45,15 +45,19 @@ def k_means(data, clusters):
     return (curr_clusters, means_list)
 
 # Returns the mean of a cluster
-def find_mean(cluster):
-    vals = np.array(cluster[0])
+def find_mean(cluster,dim):
+    #print("cluste",cluster)
+    vals = np.array(dim)
     for point in cluster:
         vals = vals + np.array(point)
         # x_vals.append(point[0])
         # y_vals.append(point[1])
 
     #mean_point = [sum(x_vals)/len(x_vals), sum(y_vals)/len(y_vals)]
-    mean_point = vals/float(len(cluster))
+    if(len(cluster)!=0):
+        mean_point = vals/float(len(cluster))
+    else:
+        mean_point = []
     return mean_point
 
 # Separates the data into the clusters given the centers

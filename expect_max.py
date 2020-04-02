@@ -154,7 +154,7 @@ def em_restart(given_points,no_k):
 
 file_path = r"/home/ankit/git/AI/assignment_2/Expectation-Mazimization/sample_EM_data.csv"
 given_points = np.array(read_board(file_path))
-em_restart(given_points,3)
+em_restart(given_points,9)
 # if __name__ == "__main__":
 #     if len(sys.argv) == 3:
 #         file_path = r"sys.argv[1]"
